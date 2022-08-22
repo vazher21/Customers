@@ -1,4 +1,13 @@
-@use 'reset';
+@use "styles/helpers/reset";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+* {
+  font-family: sans-serif;
+}

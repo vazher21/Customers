@@ -1,0 +1,14 @@
+<div class="stepper">
+  <div
+    class="step"
+    *ngFor="let step of steps"
+    (click)="onStepClick(step)"
+    [ngClass]="{
+      current: step.index === currentStep,
+      valid: step.index < currentStep
+    }"
+  >
+    <p class="index">{{ step.index }}</p>
+    <p class="label">{{ step.label }}</p>
+  </div>
+</div>

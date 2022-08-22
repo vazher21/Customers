@@ -1,0 +1,43 @@
+@use "mixins" as mixins;
+@use "palette" as palette;
+
+$step-width: 36px;
+$step-height: 36px;
+$font-size: 12px;
+
+.stepper {
+  @include mixins.flex();
+  font-size: $font-size;
+
+  .step {
+    @include mixins.flex(unset, center, column);
+    cursor: pointer;
+    .index {
+      @include mixins.flex(center, center);
+      width: $step-width;
+      height: $step-height;
+      border-radius: 50%;
+      border: 1px solid palette.$charcoal;
+      color: palette.$dark-charcoal;
+      transition: background-color 0.12s linear, color 0.15s linear;
+      margin-bottom: 4px;
+    }
+    &.current .index,
+    &.valid .index {
+      border: 1px solid transparent;
+      color: white;
+    }
+
+    &.current .index {
+      background-color: palette.$blue-gray;
+    }
+
+    &.valid .index {
+      background-color: palette.$salad;
+    }
+
+    .label {
+      color: palette.$dark-charcoal;
+    }
+  }
+}

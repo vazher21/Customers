@@ -10,6 +10,7 @@ import { ClientFormGeneralService } from './client-form-general/client-form-gene
 import { ClientFormAddressService } from './client-form-address/client-form-address.service';
 import { ClientFormIdentityService } from './client-form-identity/client-form-identity.service';
 import { BaseStepService } from '../../../shared/classes/stepper-form/base-step-service';
+import { concatMap, delay, map, of, Subject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-client-form',
@@ -36,6 +37,7 @@ export class ClientFormComponent {
     },
   ];
   currentStep = 1;
+  shake$ = new Subject<boolean>();
 
   // @ts-ignore
   private indexToService: Map<number, BaseStepService<any>> = new Map([
@@ -57,16 +59,21 @@ export class ClientFormComponent {
       this.navigateToStep(step);
       return;
     }
-    for (let i = 1; i < step.index + 1; i++) {
+    for (let i = 1; i < step.index; i++) {
       const service = this.indexToService.get(i) as BaseStepService<any>;
       if (!service.isValid()) {
         const step = this.steps.find((s) => s.index === i) as IStep;
         service.markAllAsTouched();
-        this.navigateToStep(step);
+        this.navigateToStep(step, true);
         return;
       }
     }
     this.navigateToStep(step);
+  }
+
+  private shake() {
+    this.shake$.next(true);
+    setTimeout(() => this.shake$.next(false), 700);
   }
 
   public onNextStep() {
@@ -74,9 +81,14 @@ export class ClientFormComponent {
     this.onStepChange(nextStep as IStep);
   }
 
-  private navigateToStep(step: IStep) {
+  private navigateToStep(step: IStep, shake = false) {
     this.router
       .navigate([`${step.routerLink}`], { relativeTo: this.route })
-      .then(() => (this.currentStep = step.index));
+      .then(() => {
+        this.currentStep = step.index;
+        if (shake) {
+          this.shake();
+        }
+      });
   }
 }

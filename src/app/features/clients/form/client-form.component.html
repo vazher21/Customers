@@ -5,7 +5,11 @@
     (stepChange)="onStepChange($event)"
   ></app-stepper>
 
-  <div class="form" (keydown.enter)="onNextStep()">
+  <div
+    class="form"
+    (keydown.enter)="onNextStep()"
+    [ngClass]="{ shake: shake$ | async }"
+  >
     <router-outlet></router-outlet>
   </div>
   <div class="actions">

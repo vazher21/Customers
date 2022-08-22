@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivateChild,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -17,7 +18,8 @@ import { ClientFormAddressService } from '../form/client-form-address/client-for
 export class CanSubmitGuard implements CanActivateChild {
   constructor(
     private clientGeneralFormService: ClientFormGeneralService,
-    private clientAddressFormService: ClientFormAddressService
+    private clientAddressFormService: ClientFormAddressService,
+    private router: Router
   ) {}
 
   canActivateChild(
@@ -29,13 +31,21 @@ export class CanSubmitGuard implements CanActivateChild {
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
     const step: string | undefined = childRoute.routeConfig?.path;
+    let result: boolean;
     switch (step) {
       case CLIENT_ADDRESS_ROUTE:
-        return this.clientGeneralFormService.isValid();
+        result = this.clientGeneralFormService.isValid();
+        break;
       case CLIENT_IDENTITY_ROUTE:
-        return this.clientAddressFormService.isValid();
+        result = this.clientAddressFormService.isValid();
+        break;
       default:
-        return true;
+        result = true;
     }
+    if (!result) {
+      alert('You must fill the previous steps first.');
+      this.router.navigate([`../`]);
+    }
+    return result;
   }
 }

@@ -7,5 +7,5 @@ import { IStep } from './shared/standalone components/stepper/models/step.interf
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  title = 'users';
+  title = 'clients';
 }

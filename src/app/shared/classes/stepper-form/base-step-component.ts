@@ -1,8 +1,9 @@
 import { Unsubscriber } from '../unsubscriber';
 import { BaseStepService } from './base-step-service';
-import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Directive } from '@angular/core';
 import { takeUntil } from 'rxjs';
 
+@Directive({})
 export class BaseStepComponent extends Unsubscriber {
   constructor(
     private baseStepService: BaseStepService<any>,

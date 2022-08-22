@@ -1,4 +1,5 @@
-export interface IStep{
+export interface IStep {
   label: string;
   index: number;
+  routerLink: string;
 }

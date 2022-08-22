@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <app-stepper
+    [steps]="steps"
+    [currentStep]="currentStep"
+    (stepChange)="onStepChange($event)"
+  ></app-stepper>
+
+  <div class="form" (keydown.enter)="onNextStep()">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="actions">
+    <button mat-button (click)="onNextStep()">Next</button>
+  </div>
+</div>

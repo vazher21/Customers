@@ -14,7 +14,7 @@ export interface IClientGeneralInfo {
   dateOfBirth: string | Date;
   phoneNumber: string;
   gender?: string;
-  clientGroup: ClientGroupEnum;
+  clientGroup: ClientGroupEnum[];
   Coordinator?: string;
   sendSms?: boolean;
 }

@@ -14,6 +14,10 @@ export abstract class BaseStepService<T> {
     this.detectChanges$.next();
   }
 
-  public abstract fillForm(data: T): void;
-  public abstract readForm(): T;
+  public fillForm(data: T) {
+    this.form.patchValue(data);
+  }
+  public readForm() {
+    return this.form.value;
+  }
 }

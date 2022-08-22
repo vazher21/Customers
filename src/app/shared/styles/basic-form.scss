@@ -1,0 +1,16 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  .col {
+    width: 49%;
+  }
+  &.single {
+    justify-content: flex-end;
+    .col {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

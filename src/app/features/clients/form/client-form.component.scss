@@ -1,0 +1,15 @@
+.wrapper {
+  width: 60%;
+  padding: 30px;
+  margin: 0 auto;
+
+  app-stepper {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

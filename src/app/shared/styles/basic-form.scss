@@ -1,4 +1,5 @@
 @use "mixins" as mixins;
+@use "breakpoints" as bp;
 .row {
   display: flex;
 
@@ -12,6 +13,14 @@
     .col {
       display: flex;
       justify-content: flex-end;
+    }
+  }
+
+  @media only screen and (max-width: bp.$mobile-large) {
+    flex-direction: column;
+    gap: 0px;
+    .col {
+      width: 100%;
     }
   }
 }

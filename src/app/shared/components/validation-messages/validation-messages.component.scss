@@ -1,5 +1,8 @@
 @use "palette" as palette;
+@use "fonts" as fonts;
+
 .error {
   color: palette.$warn;
   padding-bottom: 16px;
+  font-size: fonts.$h2;
 }

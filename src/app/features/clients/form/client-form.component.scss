@@ -1,7 +1,20 @@
+@use "breakpoints" as bp;
 .wrapper {
   width: 60%;
   padding: 30px;
   margin: 0 auto;
+
+  @media only screen and (max-width: bp.$tablet) {
+    width: 80%;
+  }
+
+  @media only screen and (max-width: bp.$mobile-large) {
+    width: 95%;
+  }
+  @media only screen and (max-width: bp.$mobile) {
+    width: 99%;
+    padding: 30px 10px;
+  }
 
   app-stepper {
     display: block;
@@ -11,6 +24,7 @@
   .actions {
     display: flex;
     justify-content: flex-end;
+    margin-top: 15px;
   }
 
   .form.shake {

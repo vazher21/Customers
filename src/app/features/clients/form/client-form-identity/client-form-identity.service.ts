@@ -14,4 +14,13 @@ export class ClientFormIdentityService extends BaseStepService<IClientIdentityIn
     issuedBy: new FormControl(null, Validators.required),
     series: new FormControl(null),
   });
+
+  constructor() {
+    super();
+    this.file.valueChanges.subscribe((a) => console.log(a));
+  }
+
+  get file(): FormControl {
+    return this.form.controls['file'] as FormControl;
+  }
 }

@@ -5,12 +5,12 @@ import {
   CLIENT_GENERAL_ROUTE,
   CLIENT_IDENTITY_ROUTE,
 } from '../routes/clients-routes';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationCancel, Router } from '@angular/router';
 import { ClientFormGeneralService } from './client-form-general/client-form-general.service';
 import { ClientFormAddressService } from './client-form-address/client-form-address.service';
 import { ClientFormIdentityService } from './client-form-identity/client-form-identity.service';
 import { BaseStepService } from '../../../shared/classes/stepper-form/base-step-service';
-import { Subject, switchMap } from 'rxjs';
+import { filter, Subject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-client-form',
@@ -84,7 +84,8 @@ export class ClientFormComponent {
   private navigateToStep(step: IStep, shake = false) {
     this.router
       .navigate([`${step.routerLink}`], { relativeTo: this.route })
-      .then(() => {
+      .then((result) => {
+        if (!result) return;
         this.currentStep = step.index;
         if (shake) {
           this.shake();

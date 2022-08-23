@@ -1,0 +1,45 @@
+@use "fonts" as fonts;
+@use "palette" as palette;
+@use "breakpoints" as bp;
+.wrapper {
+  padding: 40px;
+  width: 60%;
+  margin: 0 auto;
+
+  @media only screen and (max-width: bp.$tablet) {
+    width: 90%;
+  }
+  @media only screen and (max-width: bp.$mobile) {
+    width: 99%;
+    padding: 20px;
+  }
+}
+h1 {
+  font-size: fonts.$h1;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.info {
+  padding: 20px 0;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: left;
+  padding: 5px;
+  border-bottom: 1px solid palette.$charcoal;
+  p {
+    text-overflow: ellipsis;
+    width: 50%;
+  }
+  p:first-child {
+    font-weight: bold;
+  }
+}
+
+img {
+  width: 100%;
+  height: 200px;
+}

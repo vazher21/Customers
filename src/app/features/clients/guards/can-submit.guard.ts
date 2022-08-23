@@ -11,7 +11,7 @@ import { ClientFormGeneralService } from '../form/client-form-general/client-for
 import {
   CLIENT_ADDRESS_ROUTE,
   CLIENT_IDENTITY_ROUTE,
-} from '../routes/clients-routes';
+} from '../constants/clients-routes';
 import { ClientFormAddressService } from '../form/client-form-address/client-form-address.service';
 
 @Injectable()

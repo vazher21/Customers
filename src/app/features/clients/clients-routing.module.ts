@@ -11,9 +11,11 @@ import {
   CLIENT_ADDRESS_ROUTE,
   CLIENT_GENERAL_ROUTE,
   CLIENT_IDENTITY_ROUTE,
+  CREATED_CLIENT,
   MAIN_FORM_ROUTE,
-} from './routes/clients-routes';
+} from './constants/clients-routes';
 import { CanSubmitGuard } from './guards/can-submit.guard';
+import { CreatedClientComponent } from './created-client/created-client.component';
 
 const routes: Routes = [
   { path: '', redirectTo: MAIN_FORM_ROUTE, pathMatch: 'full' },
@@ -43,6 +45,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: CREATED_CLIENT, component: CreatedClientComponent },
 ];
 
 @NgModule({

@@ -1,16 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { IStep } from '../../../shared/standalone components/stepper/models/step.interface';
-import {
-  CLIENT_ADDRESS_ROUTE,
-  CLIENT_GENERAL_ROUTE,
-  CLIENT_IDENTITY_ROUTE,
-} from '../routes/clients-routes';
+import { CREATED_CLIENT } from '../constants/clients-routes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientFormGeneralService } from './client-form-general/client-form-general.service';
 import { ClientFormAddressService } from './client-form-address/client-form-address.service';
 import { ClientFormIdentityService } from './client-form-identity/client-form-identity.service';
 import { BaseStepService } from '../../../shared/classes/stepper-form/base-step-service';
 import { Subject } from 'rxjs';
+import { IClient } from '../models/client.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { STEPS } from '../constants/steps';
 
 @Component({
   selector: 'app-client-form',
@@ -19,23 +18,7 @@ import { Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientFormComponent {
-  steps: IStep[] = [
-    {
-      index: 1,
-      label: 'Client information',
-      routerLink: CLIENT_GENERAL_ROUTE,
-    },
-    {
-      index: 2,
-      label: 'Address information',
-      routerLink: CLIENT_ADDRESS_ROUTE,
-    },
-    {
-      index: 3,
-      label: 'Identity information',
-      routerLink: CLIENT_IDENTITY_ROUTE,
-    },
-  ];
+  steps = STEPS;
   currentStep = 1;
   shake$ = new Subject<boolean>();
 
@@ -51,7 +34,8 @@ export class ClientFormComponent {
     private route: ActivatedRoute,
     private clientGeneralFormService: ClientFormGeneralService,
     private clientAddressFormService: ClientFormAddressService,
-    private clientFormIdentityService: ClientFormIdentityService
+    private clientFormIdentityService: ClientFormIdentityService,
+    private matSnackBar: MatSnackBar
   ) {}
 
   onStepChange(step: IStep) {
@@ -104,5 +88,15 @@ export class ClientFormComponent {
       this.shake();
       return;
     }
+    const client: IClient = {
+      addressInfo: this.clientAddressFormService.readForm(),
+      generalInfo: this.clientGeneralFormService.readForm(),
+      identityInfo: this.clientFormIdentityService.readForm(),
+    };
+    this.matSnackBar.open('Client successfully created!');
+    this.router.navigate([`../${CREATED_CLIENT}`], {
+      state: { client },
+      relativeTo: this.route,
+    });
   }
 }

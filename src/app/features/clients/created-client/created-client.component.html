@@ -1,0 +1,103 @@
+<div class="wrapper">
+  <h1>{{ client.generalInfo.name }}'s Information.</h1>
+  <mat-tab-group>
+    <mat-tab label="General Information" *ngIf="client.generalInfo as info">
+      <div class="info">
+        <div class="row">
+          <p>Name:</p>
+          <p>{{ info.name }}</p>
+        </div>
+        <div class="row">
+          <p>Last name:</p>
+          <p>{{ info.lastName }}</p>
+        </div>
+        <div class="row" *ngIf="info.middleName as mid">
+          <p>Middle name:</p>
+          <p>{{ mid }}</p>
+        </div>
+        <div class="row" *ngIf="info.gender as gen">
+          <p>Gender:</p>
+          <p>{{ gen }}</p>
+        </div>
+        <div class="row">
+          <p>Date of birth:</p>
+          <p>{{ info.dateOfBirth | date }}</p>
+        </div>
+        <div class="row">
+          <p>Phone:</p>
+          <p>{{ info.phoneNumber }}</p>
+        </div>
+        <div class="row">
+          <p>Client group{{ info.clientGroup.length > 1 ? "s" : "" }}:</p>
+          <p>
+            <ng-container *ngFor="let group of info.clientGroup"
+              >{{ group }}
+            </ng-container>
+          </p>
+        </div>
+        <div class="row" *ngIf="info.coordinator as cor">
+          <p>Phone:</p>
+          <p>{{ cor }}</p>
+        </div>
+        <div class="row">
+          <p>Send sms:</p>
+          <p>{{ info.sendSms ? "yes" : "no" }}</p>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Address Information" *ngIf="client.addressInfo as info">
+      <div class="info">
+        <div class="row">
+          <p>Country:</p>
+          <p>{{ info.country }}</p>
+        </div>
+        <div class="row">
+          <p>City:</p>
+          <p>{{ info.city }}</p>
+        </div>
+        <div class="row">
+          <p>Street:</p>
+          <p>{{ info.street }}</p>
+        </div>
+        <div class="row">
+          <p>House:</p>
+          <p>{{ info.house }}</p>
+        </div>
+        <div class="row" *ngIf="info.area as area">
+          <p>Area:</p>
+          <p>{{ area }}</p>
+        </div>
+      </div></mat-tab
+    >
+    <mat-tab label="Identity Information" *ngIf="client.identityInfo as info"
+      ><div class="info">
+        <div class="row">
+          <p>Document type:</p>
+          <p>{{ info.documentType }}</p>
+        </div>
+        <!--        <div class="row" *ngIf="info.file as file">-->
+        <!--          <p>Document</p>-->
+        <!--          <p><img [src]="file" alt="" /></p>-->
+        <!--        </div>-->
+        <div class="row" *ngIf="info.series as ser">
+          <p>Series:</p>
+          <p>{{ ser }}</p>
+        </div>
+        <div class="row">
+          <p>Number:</p>
+          <p>{{ info.number }}</p>
+        </div>
+        <div class="row">
+          <p>Date of issue:</p>
+          <p>{{ info.dateOfIssue | date }}</p>
+        </div>
+        <div class="row">
+          <p>Issued By:</p>
+          <p>{{ info.issuedBy }}</p>
+        </div>
+      </div>
+
+      <img *ngIf="client.identityInfo.file as file" [src]="file" alt="" />
+    </mat-tab>
+  </mat-tab-group>
+</div>

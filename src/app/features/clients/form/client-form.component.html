@@ -7,22 +7,24 @@
 
   <div
     class="form"
-    (keydown.enter)="onNextStep()"
+    (keydown.enter)="currentStep === steps.length ? submit() : onNextStep()"
     [ngClass]="{ shake: shake$ | async }"
   >
     <router-outlet></router-outlet>
   </div>
   <div class="actions">
     <button
-      mat-button
+      mat-raised-button
       (click)="onNextStep()"
-      *ngIf="currentStep !== steps.length; else submit"
+      *ngIf="currentStep !== steps.length; else submitButton"
     >
       Next
     </button>
 
-    <ng-template #submit>
-      <button mat-button (click)="onNextStep()">Submit</button>
+    <ng-template #submitButton>
+      <button mat-raised-button color="primary" (click)="submit()">
+        Submit
+      </button>
     </ng-template>
   </div>
 </div>

@@ -9,6 +9,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
+import {
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+  MatSnackBarModule,
+} from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [ValidationMessagesComponent],
@@ -24,7 +29,12 @@ import { ValidationMessagesComponent } from './components/validation-messages/va
     MatNativeDateModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatSnackBarModule,
     ValidationMessagesComponent,
+    MatTabsModule,
+  ],
+  providers: [
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
   ],
 })
 export class SharedModule {}

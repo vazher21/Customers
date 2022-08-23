@@ -15,7 +15,7 @@ export interface IClientGeneralInfo {
   phoneNumber: string;
   gender?: string;
   clientGroup: ClientGroupEnum[];
-  Coordinator?: string;
+  coordinator?: string;
   sendSms?: boolean;
 }
 
@@ -34,5 +34,5 @@ export interface IClientIdentityInfo {
   number: string;
   issuedBy: string;
   dateOfIssue: string | Date;
-  file: string; // base64;
+  file?: string; // base64;
 }

@@ -2,7 +2,7 @@ import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 export abstract class BaseStepService<T> {
-  public detectChanges$ = new Subject<void>(); // Mainly used after form.markAllAsTouched();
+  public detectChanges$ = new Subject<void>(); // used after form.markAllAsTouched();
   public form: FormGroup<any>;
 
   public isValid() {

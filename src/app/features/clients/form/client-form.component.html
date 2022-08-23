@@ -13,6 +13,16 @@
     <router-outlet></router-outlet>
   </div>
   <div class="actions">
-    <button mat-button (click)="onNextStep()">Next</button>
+    <button
+      mat-button
+      (click)="onNextStep()"
+      *ngIf="currentStep !== steps.length; else submit"
+    >
+      Next
+    </button>
+
+    <ng-template #submit>
+      <button mat-button (click)="onNextStep()">Submit</button>
+    </ng-template>
   </div>
 </div>

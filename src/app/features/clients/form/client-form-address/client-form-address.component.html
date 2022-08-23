@@ -1,1 +1,54 @@
-<p>client-form-address works!</p>
+<form [formGroup]="form" [@enterLeaveAnimation]>
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>Country</mat-label>
+        <mat-select formControlName="country">
+          <mat-option
+            *ngFor="let country of (countries$ | async)!"
+            [value]="country"
+          >
+            {{ country }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <app-validation-messages
+        formControlName="country"
+      ></app-validation-messages>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <mat-select formControlName="city">
+          <mat-option *ngFor="let city of (cities$ | async)!" [value]="city">
+            {{ city }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <app-validation-messages formControlName="city"></app-validation-messages>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>Street</mat-label>
+        <input matInput placeholder="Street" formControlName="street" />
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>House</mat-label>
+        <input matInput placeholder="House" formControlName="house" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>Area</mat-label>
+        <input matInput placeholder="Area" formControlName="area" />
+      </mat-form-field>
+      <app-validation-messages formControlName="area"></app-validation-messages>
+    </div>
+  </div>
+</form>

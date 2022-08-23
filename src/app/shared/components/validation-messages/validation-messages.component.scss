@@ -1,0 +1,5 @@
+@use "palette" as palette;
+.error {
+  color: palette.$warn;
+  padding-bottom: 16px;
+}

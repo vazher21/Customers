@@ -8,9 +8,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [ValidationMessagesComponent],
   imports: [CommonModule],
   exports: [
     CommonModule,
@@ -23,6 +24,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatNativeDateModule,
     MatSelectModule,
     MatCheckboxModule,
+    ValidationMessagesComponent,
   ],
 })
 export class SharedModule {}

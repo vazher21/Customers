@@ -10,7 +10,7 @@ import { ClientFormGeneralService } from './client-form-general/client-form-gene
 import { ClientFormAddressService } from './client-form-address/client-form-address.service';
 import { ClientFormIdentityService } from './client-form-identity/client-form-identity.service';
 import { BaseStepService } from '../../../shared/classes/stepper-form/base-step-service';
-import { concatMap, delay, map, of, Subject, switchMap } from 'rxjs';
+import { Subject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-client-form',
@@ -91,4 +91,6 @@ export class ClientFormComponent {
         }
       });
   }
+
+  submit() {}
 }

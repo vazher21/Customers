@@ -12,7 +12,11 @@ export class ClientFormGeneralService extends BaseStepService<IClientGeneralInfo
     lastName: new FormControl<string | null>('', Validators.required),
     middleName: new FormControl<string | null>(''),
     gender: new FormControl<string | null>(null),
-    phoneNumber: new FormControl<string | null>('', Validators.required),
+    phoneNumber: new FormControl<string | null>('', [
+      Validators.required,
+      Validators.minLength(11),
+      Validators.maxLength(11), // Didn't want to use regex
+    ]),
     dateOfBirth: new FormControl<string | Date | null>('', Validators.required),
     clientGroup: new FormControl<ClientGroupEnum[] | null>(
       null,

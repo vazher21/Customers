@@ -1,7 +1,8 @@
+@use "mixins" as mixins;
 .row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+  @include mixins.flex(space-betwee, flex-start);
   gap: 20px;
   .col {
     width: 49%;

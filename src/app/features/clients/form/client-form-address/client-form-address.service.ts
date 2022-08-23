@@ -13,4 +13,17 @@ export class ClientFormAddressService extends BaseStepService<IClientAddressInfo
     house: new FormControl<string>('', Validators.required),
     street: new FormControl<string>('', Validators.required),
   });
+
+  get country(): FormControl {
+    return this.form.controls['country'] as FormControl;
+  }
+
+  get city(): FormControl {
+    return this.form.controls['city'] as FormControl;
+  }
+
+  constructor() {
+    super();
+    this.country.valueChanges.subscribe(() => this.city.reset());
+  }
 }

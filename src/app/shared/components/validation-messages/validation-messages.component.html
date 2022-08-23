@@ -1,0 +1,19 @@
+<ng-container *ngIf="control.errors && control.touched">
+  <div *ngIf="control.errors!['required']" class="error" [@enterLeaveAnimation]>
+    {{ requiredMessage }}
+  </div>
+  <div
+    *ngIf="control.errors!['maxlength'] as error"
+    class="error"
+    [@enterLeaveAnimation]
+  >
+    maximum length is {{ error.requiredLength }} symbols
+  </div>
+  <div
+    *ngIf="control.errors['minlength'] as error"
+    class="error"
+    [@enterLeaveAnimation]
+  >
+    minimum length is {{ error.requiredLength }} symbols
+  </div>
+</ng-container>

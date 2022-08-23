@@ -9,6 +9,7 @@ import { ClientFormGeneralService } from './client-form-general.service';
 import { ClientGroupEnum } from '../../models/client-group.enum';
 import { enumToArray } from '../../../../shared';
 import { of } from 'rxjs';
+import { enterLeaveAnimation } from '../../../../shared/animations/enter-leave.animation';
 
 @Component({
   selector: 'app-client-form-general',
@@ -18,6 +19,7 @@ import { of } from 'rxjs';
     '../../../../shared/styles/basic-form.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [enterLeaveAnimation],
 })
 export class ClientFormGeneralComponent extends BaseStepComponent {
   public form = this.generalFormService.form;

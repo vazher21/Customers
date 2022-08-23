@@ -1,16 +1,16 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { IStep } from '../../../shared/standalone components/stepper/models/step.interface';
 import {
   CLIENT_ADDRESS_ROUTE,
   CLIENT_GENERAL_ROUTE,
   CLIENT_IDENTITY_ROUTE,
 } from '../routes/clients-routes';
-import { ActivatedRoute, NavigationCancel, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClientFormGeneralService } from './client-form-general/client-form-general.service';
 import { ClientFormAddressService } from './client-form-address/client-form-address.service';
 import { ClientFormIdentityService } from './client-form-identity/client-form-identity.service';
 import { BaseStepService } from '../../../shared/classes/stepper-form/base-step-service';
-import { filter, Subject, switchMap } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-client-form',
@@ -85,13 +85,24 @@ export class ClientFormComponent {
     this.router
       .navigate([`${step.routerLink}`], { relativeTo: this.route })
       .then((result) => {
-        if (!result) return;
-        this.currentStep = step.index;
         if (shake) {
           this.shake();
         }
+        if (!result) {
+          return;
+        }
+        this.currentStep = step.index;
       });
   }
 
-  submit() {}
+  submit() {
+    const service = this.indexToService.get(
+      this.currentStep
+    ) as BaseStepService<any>;
+    if (!service.isValid()) {
+      service.markAllAsTouched();
+      this.shake();
+      return;
+    }
+  }
 }

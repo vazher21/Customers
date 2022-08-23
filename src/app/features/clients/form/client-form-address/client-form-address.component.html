@@ -34,12 +34,18 @@
         <mat-label>Street</mat-label>
         <input matInput placeholder="Street" formControlName="street" />
       </mat-form-field>
+      <app-validation-messages
+        formControlName="street"
+      ></app-validation-messages>
     </div>
     <div class="col">
       <mat-form-field appearance="fill">
         <mat-label>House</mat-label>
         <input matInput placeholder="House" formControlName="house" />
       </mat-form-field>
+      <app-validation-messages
+        formControlName="house"
+      ></app-validation-messages>
     </div>
   </div>
   <div class="row">

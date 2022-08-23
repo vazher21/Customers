@@ -1,6 +1,7 @@
 @use "styles/helpers/reset";
 @use "fonts" as fonts;
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@use "palette" as p;
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 html,
 body {
@@ -20,4 +21,8 @@ mat-form-field {
 }
 mat-checkbox {
   font-size: fonts.$p !important;
+}
+
+body {
+  background-color: rgba(236, 236, 236, 0.25);
 }
